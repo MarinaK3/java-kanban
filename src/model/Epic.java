@@ -18,10 +18,6 @@ public class Epic extends Task {
         subTasks.add(subTask);
     }
 
-    public void removeSubTask(SubTask subTask) {
-        subTasks.remove(subTask);
-    }
-
     public void updateStatus() {
         if (subTasks.isEmpty()) {
             status = Status.NEW;
@@ -51,5 +47,15 @@ public class Epic extends Task {
             status = Status.IN_PROGRESS;
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return "Epic{" +
+                "id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", status=" + getStatus() +
+                ", description='" + getDescription() + '\'' +
+                '}';
     }
 }

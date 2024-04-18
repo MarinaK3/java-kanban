@@ -74,7 +74,7 @@ public class TaskManager {
         return new ArrayList<>(epics.values());
     }
 
-    public void deleteEpicById(int id) { //TODO: delete all subtasks?
+    public void deleteEpicById(int id) {
         Epic epic = epics.get(id);
         ArrayList<SubTask> subTasksForEpic = getAllSubTasksForEpic(epic);
         ArrayList<Integer> subTasksId = new ArrayList<>();

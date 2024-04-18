@@ -18,19 +18,13 @@ public class Main {
         Task task2 = taskManager.createTask(new Task("Shop", Status.NEW, "Buy grocery"));
         System.out.println("create task2: " + task2);
 
-        Task task3 = taskManager.createTask(new Task("Clean", Status.NEW, "Wash windows"));
-        System.out.println("create task3: " + task3);
-
         System.out.println("Get all tasks: " + taskManager.getAllTasks());
 
         Task taskFromManager = taskManager.getTask(task2.getId());
-
         System.out.println("Get task by Id: " + taskFromManager);
 
         Task taskUpdated = new Task(task2.getId(), "Updated Shop Task", Status.IN_PROGRESS, "Buy grocery");
         taskManager.updateTask(taskUpdated);
-        // taskFromManager.setStatus(Status.IN_PROGRESS);
-        //taskManager.updateTask(taskFromManager);
         System.out.println("Task Updated " + taskUpdated);
 
         taskManager.deleteTaskById(task1.getId());
@@ -40,8 +34,6 @@ public class Main {
 
         taskManager.deleteAllTasks();
         System.out.println("All tasks deleted");
-
-
         System.out.println("Get all tasks: " + taskManager.getAllTasks());
 
         //Epics
@@ -61,12 +53,8 @@ public class Main {
 
         System.out.println("Get all epics: " + taskManager.getAllEpics());
 
-
-        System.out.println("All epics deleted");
-        System.out.println("Get all epics: " + taskManager.getAllEpics());
-
         //SubTasks
-        Epic epic3 = taskManager.createEpic(new Epic("Relocation", "Relocate to other country"));
+        Epic epic3 = taskManager.createEpic(new Epic("Relocation", "Relocate to other town"));
         System.out.println("create epic3: " + epic3);
 
         SubTask subTask1 = taskManager.createSubTask(new SubTask("Prepare docs", Status.DONE, "Collect all documents", epic3));
@@ -92,42 +80,14 @@ public class Main {
         taskManager.deleteSubTaskById(subTask1.getId());
         System.out.println("SubTask1 deleted");
         System.out.println("Get all subTasks after SubTask1 deleted: " + taskManager.getAllSubTasks());
-        System.out.println("check epic3 status after SubTask1 was deleted: " + epic3);
-
 
         System.out.println("Get all epics: " + taskManager.getAllEpics());
 
-        SubTask subTask4 = taskManager.createSubTask(new SubTask("Clean floor", Status.IN_PROGRESS, "Clean floor good", epic2));
-
+        System.out.println("Deleting all epics...");
+        taskManager.deleteAllEpics();
+        System.out.println("Get all epics: " + taskManager.getAllEpics());
         System.out.println("Get all subTasks: " + taskManager.getAllSubTasks());
-
         System.out.println("Get all subTasks for epic3: " + taskManager.getAllSubTasksForEpic(epic3));
         System.out.println("Get all subTasks for epic2: " + taskManager.getAllSubTasksForEpic(epic2));
-
-//        System.out.println("Deleting all subtasks...");
-//        taskManager.deleteAllSubTasks();
-//        System.out.println("Get all subTasks: " + taskManager.getAllSubTasks());
-//        System.out.println("Get all epics: " + taskManager.getAllEpics());
-//        System.out.println("Get all subTasks for epic3: " + taskManager.getAllSubTasksForEpic(epic3));
-//        System.out.println("Get all subTasks for epic2: " + taskManager.getAllSubTasksForEpic(epic2));
-
-//        System.out.println("Deleting all epics...");
-//        taskManager.deleteAllEpics();
-//        System.out.println("Get all epics: " + taskManager.getAllEpics());
-//        System.out.println("Get all subTasks: " + taskManager.getAllSubTasks());
-//        System.out.println("Get all subTasks for epic3: " + taskManager.getAllSubTasksForEpic(epic3));
-//        System.out.println("Get all subTasks for epic2: " + taskManager.getAllSubTasksForEpic(epic2));
-
-
-        System.out.println("Delete epic by Id and all asossiated subTasks...");
-        System.out.println("Get all epics: " + taskManager.getAllEpics());
-        System.out.println("Get all subTasks for epic3: " + taskManager.getAllSubTasksForEpic(epic3));
-        System.out.println("Get all subTasks before deleting epic3: " + taskManager.getAllSubTasks());
-        System.out.println("Deleting epic2...");
-        taskManager.deleteEpicById(epic2.getId());
-        System.out.println("Get all epics: " + taskManager.getAllEpics());
-        System.out.println("Get all subTasks for epic2: " + taskManager.getAllSubTasksForEpic(epic2));
-        System.out.println("Get all subTasks after deleting epic3: " + taskManager.getAllSubTasks());
-        System.out.println("Get all subTasks for epic1: " + taskManager.getAllSubTasksForEpic(epic1));
     }
 }
