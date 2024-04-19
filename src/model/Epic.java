@@ -2,12 +2,13 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Epic extends Task {
     private List<SubTask> subTasks = new ArrayList<>();
 
     public Epic(String name, String description) {
-        super(name, Status.NEW, description);
+        super(name, description);
     }
 
     public List<SubTask> getSubTasks() {
@@ -50,12 +51,16 @@ public class Epic extends Task {
     }
 
     @Override
-    public String toString() {
-        return "Epic{" +
-                "id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", status=" + getStatus() +
-                ", description='" + getDescription() + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Epic epic = (Epic) o;
+        return Objects.equals(subTasks, epic.subTasks);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), subTasks);
     }
 }

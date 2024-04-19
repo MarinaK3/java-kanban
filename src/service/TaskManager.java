@@ -9,16 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class TaskManager {
-    private HashMap<Integer, Task> tasks;
-    private HashMap<Integer, Epic> epics;
-    private HashMap<Integer, SubTask> subTasks;
+    private HashMap<Integer, Task> tasks = new HashMap<>();
+    private HashMap<Integer, Epic> epics = new HashMap<>();
+    private HashMap<Integer, SubTask> subTasks = new HashMap<>();
     private int counter = 0;
 
-    public TaskManager() {
-        this.tasks = new HashMap<>();
-        this.epics = new HashMap<>();
-        this.subTasks = new HashMap<>();
-    }
 
     private int generateId() {
         return ++counter;
@@ -31,6 +26,10 @@ public class TaskManager {
     }
 
     public void updateTask(Task task) {
+        Task savedTask = tasks.get(task.getId());
+        if (savedTask == null) {
+            return;
+        }
         tasks.put(task.getId(), task);
     }
 
