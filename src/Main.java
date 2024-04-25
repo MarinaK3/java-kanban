@@ -2,7 +2,6 @@ import model.Epic;
 import model.Status;
 import model.SubTask;
 import model.Task;
-import service.InMemoryTaskManager;
 import service.Managers;
 import service.TaskManager;
 
@@ -39,6 +38,8 @@ public class Main {
         System.out.println("All tasks deleted");
         System.out.println("Get all tasks: " + taskManager.getAllTasks());
 
+        System.out.println("History: " + taskManager.getHistory());
+
         //Epics
         Epic epic1 = taskManager.createEpic(new Epic("ToDoYandexInTime", "To do all Yandex tasks"));
         System.out.println("create epic1: " + epic1);
@@ -51,9 +52,8 @@ public class Main {
         epicFromManager.setDescription("Clean all house updated");
         taskManager.updateEpic(epicFromManager);
         System.out.println("Epic Updated " + epicFromManager);
-
         System.out.println("Get epic by Id: " + taskManager.getEpic(epic1.getId()));
-
+        System.out.println("Get epic by Id: " + taskManager.getEpic(epic1.getId()));
         System.out.println("Get all epics: " + taskManager.getAllEpics());
 
         //SubTasks
@@ -95,5 +95,7 @@ public class Main {
         System.out.println("Get all subTasks: " + taskManager.getAllSubTasks());
         System.out.println("Get all subTasks for epic3: " + taskManager.getAllSubTasksForEpic(epic3));
         System.out.println("Get all subTasks for epic2: " + taskManager.getAllSubTasksForEpic(epic2));
+
+        System.out.println("History: " + taskManager.getHistory());
     }
 }
