@@ -4,12 +4,10 @@ import model.Epic;
 import model.Status;
 import model.SubTask;
 import model.Task;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -207,11 +205,27 @@ class InMemoryTaskManagerTest {
         assertTrue(inMemoryTaskManager.getAllSubTasks().isEmpty());
     }
 
+    @Test
+    @DisplayName("getHistoryTest")
+    public void shouldReturnHistoryTest() {
+        InMemoryHistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
+        inMemoryTaskManager = new InMemoryTaskManager(inMemoryHistoryManager);
+        task1 = inMemoryTaskManager.createTask(new Task("Cook", "Cooking dinner"));
+        epic = inMemoryTaskManager.createEpic(new Epic("Relocation", "Relocate to other town"));
+        subTask1 = inMemoryTaskManager.createSubTask(new SubTask("Prepare docs", "Collect all documents", epic));
+
+        inMemoryTaskManager.getTask(task1.getId());
+        inMemoryTaskManager.getEpic(epic.getId());
+        inMemoryTaskManager.getSubTask(subTask1.getId());
+        List<Task> historyList = inMemoryTaskManager.getHistory();
+
+        assertTrue(historyList.size() == 3);
+    }
+
 
     private static class EmptyHistoryManager implements HistoryManager {
         @Override
         public void add(Task task) {
-
         }
 
         @Override
