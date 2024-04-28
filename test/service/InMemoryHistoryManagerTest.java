@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -52,7 +53,11 @@ class InMemoryHistoryManagerTest {
         inMemoryHistoryManager.add(epic);
         inMemoryHistoryManager.add(subTask);
 
+        List<Task> taskList = inMemoryHistoryManager.getAll();
+        taskList.clear();
+
         assertEquals(3, inMemoryHistoryManager.getAll().size());
+        assertEquals(0, taskList.size());
     }
 
     @DisplayName("shouldNotAddNullTaskTest")
